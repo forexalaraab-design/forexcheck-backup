@@ -1,0 +1,1072 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+
+<head>
+  <meta content='width=device-width, initial-scale=1, viewport-fit=cover' name='viewport'/>
+  <meta content='IE=edge' http-equiv='X-UA-Compatible'/>
+  <script>
+  //<![CDATA[
+  // Warm the feed cache in parallel with Blogger's widgets.js so image
+  // injection doesn't wait on it. Consumed by fxFeedImages() below.
+  (function(){
+    var feedCache=location.origin+'/feeds/posts/default?alt=json&max-results=24&fields=entry(title,link,content)';
+    window.__feedP=null;
+    if(!window.fetch)return;
+    try{window.__feedP=fetch(feedCache).then(function(r){return r.json();}).catch(function(){return null;});}catch(e){}
+  })();
+  // Live widgets must NOT start until the LCP hero image has loaded, else they
+  // compete with it for 4G bandwidth and push LCP out. `__fxLive` resolves when
+  // the hero <img> fires onload (see fxInjectImages); a hard failsafe in the
+  // widget scripts guarantees they always run.
+  (function(){
+    if(window.__fxLive)return;
+    var resolveFn=null;
+    window.__fxLive=new Promise(function(res){resolveFn=res;});
+    window.__fxLiveStart=function(){if(resolveFn){var r=resolveFn;resolveFn=null;try{r();}catch(e){}}};
+  })();
+  function __fxLiveGo(){
+    if(!(window.__fxLiveStart))return;
+    try{window.__fxLiveStart();}catch(e){}
+  }
+  //]]>
+  </script>
+  <b:include data='blog' name='all-head-content'/>
+  <title><data:blog.pageTitle/></title>
+
+  <!-- SEO -->
+  <b:if cond='data:view.isSingleItem'>
+    <meta expr:content='data:blog.metaDescription' name='description'/>
+  </b:if>
+  <b:if cond='data:view.isHomepage'>
+    <meta content='ط£ط®ط¨ط§ط± ظˆطھط­ظ„ظٹظ„ط§طھ ط§ظ„ظپظˆط±ظƒط³ ط¨ط§ظ„ط¹ط±ط¨ظٹط©: ط³ط¹ط± ط§ظ„ط¯ظˆظ„ط§ط± ظˆط§ظ„ط°ظ‡ط¨ ط§ظ„ظٹظˆظ…طŒ طھظˆطµظٹط§طھ ظپظˆط±ظƒط³طŒ ظˆط³ط·ط§ط، ظ…ظˆط«ظˆظ‚ظˆظ†طŒ طھط­ظ„ظٹظ„ ظپظ†ظٹطŒ ظˆط¹ظ…ظ„ط§طھ ط±ظ‚ظ…ظٹط©.' name='description'/>
+  </b:if>
+  <meta content='index,follow' name='robots'/>
+  <b:if cond='data:view.isSearch'>
+    <meta content='noindex,follow' name='robots'/>
+  </b:if>
+  <meta content='#131722' name='theme-color'/>
+
+  <link expr:href='data:blog.canonicalUrl' rel='canonical'/>
+  <!-- OpenGraph -->
+  <meta expr:content='data:blog.title' property='og:site_name'/>
+  <meta expr:content='data:blog.pageName' property='og:title'/>
+  <b:if cond='data:view.isHomepage'>
+    <meta content='website' property='og:type'/>
+  <b:else/>
+    <meta content='article' property='og:type'/>
+  </b:if>
+  <meta expr:content='data:blog.canonicalUrl' property='og:url'/>
+  <b:if cond='data:blog.metaDescription'>
+    <meta expr:content='data:blog.metaDescription' property='og:description'/>
+  </b:if>
+  <!-- Article images are served by Blogger's own og:image injection on post
+       pages; only non-post pages (home/archive) get a logo share image. -->
+  <b:if cond='data:view.isHomepage'>
+    <meta content='https://raw.githubusercontent.com/forexalaraab-design/forexcheck-backup/main/assets/logo-icon.png' property='og:image'/>
+  </b:if>
+  <!-- Twitter -->
+  <meta content='summary_large_image' name='twitter:card'/>
+  <meta expr:content='data:blog.pageName' name='twitter:title'/>
+  <b:if cond='data:blog.metaDescription'>
+    <meta expr:content='data:blog.metaDescription' name='twitter:description'/>
+  </b:if>
+  <b:if cond='data:view.isHomepage'>
+    <meta content='https://raw.githubusercontent.com/forexalaraab-design/forexcheck-backup/main/assets/logo-icon.png' name='twitter:image'/>
+  </b:if>
+
+  <!-- Fonts: @font-face is self-hosted in the theme CSS so nothing blocks;
+       the 3 Arabic woff2 are preloaded and ready before first paint (â†’ CLS ~0). -->
+  <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
+  <link crossorigin='anonymous' href='https://fonts.gstatic.com/s/cairo/v31/SLXVc1nY6HkvangtZmpQdkhzfH5lkSscQyyS4J0.woff2' rel='preload' as='font' type='font/woff2'/>
+  <link crossorigin='anonymous' href='https://fonts.gstatic.com/s/ibmplexsansarabic/v15/Qw3CZRtWPQCuHme67tEYUIx3Kh0PHR9N6Ys43PWrfQ.woff2' rel='preload' as='font' type='font/woff2'/>
+  <link crossorigin='anonymous' href='https://fonts.gstatic.com/s/ibmplexsansarabic/v15/Qw3NZRtWPQCuHme67tEYUIx3Kh0PHR9N6YOG-eCRXMR5Kw.woff2' rel='preload' as='font' type='font/woff2'/>
+  <!-- Image optimizer CDN -->
+  <link crossorigin='anonymous' href='https://images.weserv.nl' rel='preconnect'/>
+  <!-- Feed hero images: pub.source often serves the direct source on weserv
+       fallback, and the LCP image host is the one to warm for LCP. -->
+  <link crossorigin='anonymous' href='https://i-invdn-com.investing.com' rel='preconnect'/>
+
+  <b:skin><![CDATA[/* no dynamic skin */]]></b:skin>
+
+  <style type='text/css'>
+/*<![CDATA[*/
+/* ===== Self-hosted font faces (Arabic + Latin). Preloaded in <head>,
+       font-display:optional => no fallback swap, so CLS stays ~0. ===== */
+@font-face{font-family:'Cairo';font-style:normal;font-weight:400;font-display:optional;src:url(https://fonts.gstatic.com/s/cairo/v31/SLXVc1nY6HkvangtZmpQdkhzfH5lkSscQyyS4J0.woff2) format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;}
+@font-face{font-family:'Cairo';font-style:normal;font-weight:400;font-display:optional;src:url(https://fonts.gstatic.com/s/cairo/v31/SLXVc1nY6HkvangtZmpQdkhzfH5lkSscRiyS.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Cairo';font-style:normal;font-weight:700;font-display:optional;src:url(https://fonts.gstatic.com/s/cairo/v31/SLXVc1nY6HkvangtZmpQdkhzfH5lkSscQyyS4J0.woff2) format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;}
+@font-face{font-family:'Cairo';font-style:normal;font-weight:700;font-display:optional;src:url(https://fonts.gstatic.com/s/cairo/v31/SLXVc1nY6HkvangtZmpQdkhzfH5lkSscRiyS.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'Cairo';font-style:normal;font-weight:800;font-display:optional;src:url(https://fonts.gstatic.com/s/cairo/v31/SLXVc1nY6HkvangtZmpQdkhzfH5lkSscQyyS4J0.woff2) format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;}
+@font-face{font-family:'Cairo';font-style:normal;font-weight:800;font-display:optional;src:url(https://fonts.gstatic.com/s/cairo/v31/SLXVc1nY6HkvangtZmpQdkhzfH5lkSscRiyS.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'IBM Plex Sans Arabic';font-style:normal;font-weight:400;font-display:optional;src:url(https://fonts.gstatic.com/s/ibmplexsansarabic/v15/Qw3CZRtWPQCuHme67tEYUIx3Kh0PHR9N6Ys43PWrfQ.woff2) format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;}
+@font-face{font-family:'IBM Plex Sans Arabic';font-style:normal;font-weight:400;font-display:optional;src:url(https://fonts.gstatic.com/s/ibmplexsansarabic/v15/Qw3CZRtWPQCuHme67tEYUIx3Kh0PHR9N6Ys93PU.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+@font-face{font-family:'IBM Plex Sans Arabic';font-style:normal;font-weight:700;font-display:optional;src:url(https://fonts.gstatic.com/s/ibmplexsansarabic/v15/Qw3NZRtWPQCuHme67tEYUIx3Kh0PHR9N6YOG-eCRXMR5Kw.woff2) format('woff2');unicode-range:U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;}
+@font-face{font-family:'IBM Plex Sans Arabic';font-style:normal;font-weight:700;font-display:optional;src:url(https://fonts.gstatic.com/s/ibmplexsansarabic/v15/Qw3NZRtWPQCuHme67tEYUIx3Kh0PHR9N6YOG-eCUXMQ.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+/* ===== Palette: dark (default) + light (body.fx-light) ===== */
+:root{
+  --bg:#131722; --panel:#1e222d; --panel2:#262b38; --border:#2a2e39;
+  --ink:#d1d4dc; --muted:#9aa0ae; --head:#ffffff;
+  --brand:#0a8f68; --brand2:#00c690; --up:#089981; --down:#f6465d;
+  --navbg:#0e1119; --headbg:#0e1119; --radius:8px; --maxw:1280px;
+  --ring:#2f3542;
+}
+body.fx-light{
+  --bg:#f4f6fb; --panel:#ffffff; --panel2:#eef1f7; --border:#e3e8f0;
+  --ink:#1e2430; --muted:#5c6470; --head:#0f1626;
+  --brand:#0a8f68; --brand2:#009e76; --up:#089981; --down:#e0314a;
+  --navbg:#ffffff; --headbg:#ffffff; --ring:#d9e0ec;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'IBM Plex Sans Arabic','Cairo','Segoe UI',Tahoma,Arial,sans-serif;
+  font-size:16px;line-height:1.8;transition:background .25s,color .25s;}
+img{max-width:100%;height:auto;border:0;}
+a{color:var(--brand2);text-decoration:none;}
+a:hover{text-decoration:underline;}
+h1,h2,h3,h4{color:var(--head);line-height:1.5;font-family:'Cairo','IBM Plex Sans Arabic',sans-serif;transition:color .25s;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 16px;}
+.flex{display:flex;gap:24px;}
+main{flex:1 1 auto;min-width:0;}
+aside{flex:0 0 320px;}
+.skip-link{position:absolute;top:-40px;right:8px;background:var(--brand);color:#fff;padding:8px 14px;z-index:99;border-radius:6px;}
+.skip-link:focus{top:8px;}
+
+/* ===== Top ticker ===== */
+.ticker{background:var(--navbg);border-bottom:1px solid var(--border);}
+.ticker .tradingview-widget-container,.ticker .tradingview-widget-container__widget{margin:0;height:40px;overflow:hidden;}
+
+/* ===== Header ===== */
+.site-header{background:var(--headbg);border-bottom:1px solid var(--border);padding:14px 0;transition:background .25s;}
+.header-in{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand-logo{width:46px;height:46px;border-radius:16px;background:linear-gradient(135deg,var(--brand),#06473a);
+  display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px;color:#fff;flex:none;overflow:hidden;
+  letter-spacing:.5px;border:2px solid rgba(255,255,255,.18);box-shadow:0 4px 12px rgba(0,0,0,.18);}
+.brand-logo img{width:100%;height:100%;object-fit:cover;display:block;}
+.brand-text b .w-check{color:var(--brand);margin-inline-start:3px;display:inline-block;font-size:21px;font-weight:800;line-height:1.2;}
+.brand-text b{display:block;color:var(--head);font-size:21px;font-weight:800;line-height:1.2;direction:ltr;text-align:left;unicode-bidi:isolate;}
+.brand-text span{display:block;color:var(--muted);font-size:12px;}
+.header-right{margin-right:auto;display:flex;align-items:center;gap:12px;}
+.clock{color:var(--muted);font-size:13px;direction:ltr;text-align:left;white-space:nowrap;}
+.search-form{display:flex;background:var(--panel);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.search-form input{border:0;background:transparent;color:var(--ink);padding:8px 12px;font-size:14px;outline:none;width:180px;font-family:inherit;}
+.search-form button{border:0;background:#0c7a55;color:#fff;padding:0 14px;cursor:pointer;font-size:14px;font-weight:700;}
+  .search-form button:hover{background:#0a6b4b;}
+
+/* Theme toggle button */
+.theme-toggle{flex:none;width:42px;height:42px;border-radius:10px;border:1px solid var(--border);
+  background:var(--panel);color:var(--head);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:19px;transition:background .25s,border-color .25s,color .25s;}
+.theme-toggle:hover{border-color:var(--brand);}
+.theme-toggle .icon-sun{display:none;}
+.theme-toggle .icon-moon{display:block;}
+body.fx-light .theme-toggle .icon-sun{display:block;}
+body.fx-light .theme-toggle .icon-moon{display:none;}
+
+/* ===== Nav ===== */
+.nav{background:var(--panel);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;box-shadow:0 1px 0 rgba(0,0,0,.1);}
+.nav-in{display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;gap:2px;}
+.nav-in::-webkit-scrollbar{display:none;}
+.nav a{color:var(--ink);font-size:14px;font-weight:600;padding:13px 13px;white-space:nowrap;border-bottom:2px solid transparent;}
+.nav a:hover{color:var(--brand2);text-decoration:none;border-bottom-color:var(--brand);}
+.nav a.is-active{color:var(--brand2);border-bottom-color:var(--brand);}
+
+/* ===== Layout ===== */
+.layout{padding:20px 0 40px;}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+.block-title{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:800;color:var(--head);margin:0 0 16px;}
+.block-title::before{content:"";width:4px;height:20px;background:var(--brand);border-radius:2px;}
+
+/* ===== Cards ===== */
+.card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:transform .15s,border-color .15s,background .25s;}
+.card:hover{transform:translateY(-2px);border-color:var(--brand);text-decoration:none;}
+.card-thumb{position:relative;display:block;aspect-ratio:16/9;background:var(--panel2);overflow:hidden;}
+.card-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s;}
+.card:hover .card-thumb img{transform:scale(1.04);}
+.card-thumb .thumb-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:800;color:var(--brand2);background:linear-gradient(135deg,var(--panel2),var(--panel));}
+.card-thumb .card-cat{position:absolute;top:10px;right:10px;background:rgba(10,143,104,.92);color:#fff;font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px;z-index:2;}
+.card-body{padding:14px 16px 16px;flex:1 1 auto;display:flex;flex-direction:column;}
+.card-title{font-size:16px;font-weight:700;line-height:1.55;color:var(--head);margin:0 0 8px;}
+.card:hover .card-title{color:var(--brand2);}
+.card-snippet{font-size:13.5px;color:var(--muted);margin:0 0 12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.card-meta{font-size:12px;color:var(--muted);margin-top:auto;display:flex;gap:10px;align-items:center;}
+
+/* Hero */
+.hero-card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:24px;transition:background .25s;}
+.hero-card .hero-thumb{aspect-ratio:16/7;position:relative;display:block;background:var(--panel2);}
+.hero-card .hero-thumb img{width:100%;height:100%;object-fit:cover;}
+.hero-card .hero-thumb .thumb-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:44px;font-weight:800;color:var(--brand2);}
+.hero-card .hero-body{padding:20px 22px;}
+.hero-card .hero-title{font-size:24px;font-weight:800;color:var(--head);margin:6px 0 10px;line-height:1.5;}
+.hero-card .hero-title a{color:var(--head);}
+.hero-card .hero-title a:hover{color:var(--brand2);}
+.hero-card .hero-snippet{color:var(--muted);margin:0 0 12px;font-size:15px;}
+
+/* ===== Single post ===== */
+.breadcrumb{font-size:13px;color:var(--muted);margin:0 0 14px;}
+.breadcrumb a{color:var(--muted);}
+.breadcrumb a:hover{color:var(--brand2);}
+.post-heading .post-title{font-size:30px;font-weight:800;color:var(--head);margin:0 0 14px;line-height:1.5;}
+.post-meta{display:flex;flex-wrap:wrap;gap:14px;align-items:center;font-size:13px;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:20px;}
+.post-meta .author{color:var(--brand2);font-weight:600;}
+.post-meta .pill{background:var(--panel2);padding:2px 10px;border-radius:20px;color:var(--ink);}
+.post-content{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:26px;overflow-wrap:break-word;transition:background .25s;}
+.post-content p{margin:0 0 16px;}
+.post-content h2{font-size:24px;margin:26px 0 12px;color:var(--head);border-right:4px solid var(--brand);padding-right:12px;}
+.post-content h3{font-size:20px;margin:22px 0 10px;color:var(--head);}
+.post-content a{text-decoration:underline;}
+.post-content ul,.post-content ol{margin:0 0 16px;padding-right:22px;}
+.post-content img{border-radius:var(--radius);}
+.post-content blockquote{border-right:4px solid var(--brand);background:var(--panel2);padding:12px 16px;border-radius:6px;margin:0 0 16px;color:var(--ink);}
+.post-tags{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px;}
+.post-tags a{background:var(--panel2);border:1px solid var(--border);padding:4px 12px;border-radius:20px;font-size:13px;color:var(--ink);}
+.post-tags a:hover{color:var(--brand2);border-color:var(--brand);}
+.share{display:flex;gap:8px;margin-top:22px;align-items:center;font-size:13px;color:var(--muted);}
+.share a{background:var(--panel2);border:1px solid var(--border);padding:6px 14px;border-radius:6px;color:var(--ink);font-size:13px;}
+.share a:hover{color:var(--brand2);border-color:var(--brand);}
+
+/* ===== Comments ===== */
+.comments{margin-top:28px;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:22px;}
+.comment{border-bottom:1px solid var(--border);padding:12px 0;}
+.comment-author{font-weight:700;color:var(--head);}
+.comment-date{color:var(--muted);font-size:12px;margin-right:8px;}
+.comment-body{color:var(--ink);margin-top:4px;}
+
+/* ===== Sidebar ===== */
+.side-widget{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-bottom:20px;transition:background .25s;}
+.side-widget .widget-title{font-size:15px;font-weight:800;color:var(--head);margin:0 0 14px;padding-bottom:8px;border-bottom:2px solid var(--brand);}
+.side-widget ul{list-style:none;margin:0;padding:0;}
+.side-widget li{padding:9px 0;border-bottom:1px dashed var(--border);}
+.side-widget li:last-child{border-bottom:0;}
+.side-widget a{color:var(--ink);}
+.side-widget a:hover{color:var(--brand2);}
+.pp-item{display:flex;gap:12px;align-items:center;padding:8px 0;border-bottom:1px dashed var(--border);}
+.pp-item:last-child{border-bottom:0;}
+.pp-num{flex:none;width:26px;height:26px;border-radius:6px;background:var(--panel2);color:var(--brand2);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:13px;}
+.pp-item a{color:var(--ink);font-size:14px;line-height:1.5;}
+.pp-item a:hover{color:var(--brand2);}
+
+/* ===== Pager ===== */
+.pager{display:flex;justify-content:space-between;gap:12px;margin-top:24px;}
+.pager a{background:var(--panel);border:1px solid var(--border);padding:10px 18px;border-radius:8px;color:var(--ink);font-weight:600;}
+.pager a:hover{color:var(--brand2);border-color:var(--brand);text-decoration:none;}
+
+/* ===== Footer ===== */
+.site-footer{background:var(--navbg);border-top:1px solid var(--border);padding:36px 0 20px;margin-top:20px;}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px;margin-bottom:24px;}
+.footer-grid h4{color:var(--head);font-size:15px;margin:0 0 12px;font-weight:800;}
+.footer-grid a{color:var(--muted);display:block;padding:4px 0;font-size:14px;}
+.footer-grid a:hover{color:var(--brand2);}
+.footer-about{color:var(--muted);font-size:14px;line-height:1.9;}
+.footer-social{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+.footer-social .fs-social{width:38px;height:38px;border-radius:50%;background:var(--panel2);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;flex:none;
+  transition:transform .15s,background .25s,border-color .25s;}
+.footer-social .fs-social:hover{background:var(--brand);border-color:var(--brand);transform:translateY(-2px);}
+.footer-social .fs-social svg{width:17px;height:17px;fill:var(--muted);transition:fill .25s;}
+.footer-social .fs-social:hover svg{fill:#fff;}
+.copyright{border-top:1px solid var(--border);padding-top:16px;text-align:center;color:var(--muted);font-size:13px;}
+
+/* ===== misc ===== */
+.backtop{position:fixed;bottom:20px;left:20px;background:var(--brand);color:#fff;border:0;width:42px;height:42px;border-radius:10px;font-size:20px;cursor:pointer;display:none;z-index:60;}
+.backtop.show{display:block;}
+.backtop:hover{background:var(--brand2);}
+.widget-Blog1 .post{margin-bottom:0;}
+/* config + helper widgets are invisible to visitors but editable in Layout */
+.fx-config,.fx-logo-sect,.fx-adsense-sect{display:none;}
+/* ad zones */
+  .fx-ad{text-align:center;}
+  .fx-ad .widget{padding:6px 0;}
+.fx-ad-inner{margin:0 auto;max-width:100%;}
+.fx-ad .widget{margin:0;overflow:hidden;}
+.fx-ad .widget-content{display:flex;justify-content:center;}
+.fx-in-ad{text-align:center;margin:18px 0;overflow:hidden;}
+.fx-footer-links a{display:block;padding:4px 0;color:var(--muted);font-size:14px;}
+.fx-footer-links a:hover{color:var(--brand2);}
+
+/* ===== Responsive ===== */
+@media (max-width:1200px){
+  .grid-3{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:1020px){
+  aside{flex:0 0 280px;}
+}
+@media (max-width:900px){
+  .flex{flex-direction:column;}
+  aside{flex:none;width:100%;}
+  .footer-grid{grid-template-columns:repeat(2,1fr);}
+  .search-form input{width:130px;}
+}
+@media (max-width:768px){
+  body{font-size:15px;}
+  .grid-2,.grid-3{grid-template-columns:1fr;}
+  .breadcrumb{text-align:center;justify-content:center;}
+  .post-heading .post-title{font-size:23px;text-align:center;}
+  .post-meta{justify-content:center;}
+  .post-content{padding:18px;text-align:center;}
+  .post-content p,.post-content ul,.post-content ol{text-align:center;}
+  .post-content img{display:block;margin-left:auto;margin-right:auto;}
+  .share{justify-content:center;flex-wrap:wrap;}
+  .hero-card .hero-title{font-size:20px;text-align:center;}
+  .hero-card .hero-snippet{text-align:center;}
+  .hero-card .hero-body{text-align:center;}
+  .card-title{text-align:center;}
+  .card-snippet{text-align:center;}
+  .card-meta{justify-content:center;}
+  .card-cat{right:50%;transform:translateX(50%);}
+  .widget-title{text-align:center;}
+  .comments{text-align:center;}
+  .footer-grid{grid-template-columns:1fr;}
+  .footer-about,.fx-footer-links{text-align:center;}
+  .footer-about .footer-social{justify-content:center;}
+  .header-right .clock{display:none;}
+  .header-in{flex-direction:column;align-items:center;text-align:center;}
+  .header-right{width:100%;margin:0;justify-content:center;flex-wrap:wrap;}
+  .search-form{width:100%;}
+  .search-form input{width:100%;flex:1 1 auto;}
+  .nav-in{flex-wrap:wrap;justify-content:center;}
+  .nav a{padding:11px 10px;font-size:13px;}
+  .wrap{padding:0 12px;}
+  .hero-card .hero-thumb{aspect-ratio:16/9;}
+  .ticker .tradingview-widget-container,.ticker .tradingview-widget-container__widget{height:38px;overflow:hidden;}
+}
+@media (max-width:420px){
+  .brand-text b{font-size:18px;}
+  .post-meta{font-size:12px;gap:8px;}
+  .share a{font-size:12px;padding:5px 10px;}
+}
+/*]]>*/
+  </style>
+
+  <script>
+  //<![CDATA[
+  var FX_DEFAULTS={
+    colors:{bg:'#131722',panel:'#1e222d',panel2:'#262b38',border:'#2a2e39',ink:'#d1d4dc',muted:'#9aa0ae',head:'#ffffff',brand:'#0a8f68',brand2:'#00c690',up:'#089981',down:'#f6465d',navbg:'#0e1119',headbg:'#0e1119'},
+    colorsLight:{bg:'#f4f6fb',panel:'#ffffff',panel2:'#eef1f7',border:'#e3e8f0',ink:'#1e2430',muted:'#5c6470',head:'#0f1626',brand:'#0a8f68',brand2:'#009e76',up:'#089981',down:'#e0314a',navbg:'#ffffff',headbg:'#ffffff'},
+    logo:'', siteName:'', tagline:'',
+nav:[
+      {label:'طھظˆطµظٹط§طھ ظپظˆط±ظƒط³',url:'/search/label/طھظˆطµظٹط§طھ%20ظپظˆط±ظƒط³'},
+      {label:'ظˆط³ط·ط§ط، ظ…ظˆط«ظˆظ‚ظˆظ†',url:'/search/label/ظˆط³ط·ط§ط،%20ظ…ظˆط«ظˆظ‚ظˆظ†'},
+      {label:'ط£ط³ط¹ط§ط± ط§ظ„ط¹ظ…ظ„ط§طھ',url:'/search/label/ط£ط³ط¹ط§ط±%20ط§ظ„ط¹ظ…ظ„ط§طھ'},
+      {label:'ط§ظ„ط°ظ‡ط¨ ظˆط§ظ„ظ†ظپط·',url:'/search/label/ط§ظ„ط°ظ‡ط¨%20ظˆط§ظ„ظ†ظپط·'},
+      {label:'طھط­ظ„ظٹظ„ ظپظ†ظٹ',url:'/search/label/طھط­ظ„ظٹظ„%20ظپظ†ظٹ'},
+      {label:'ط§ظ„ط¹ظ…ظ„ط§طھ ط§ظ„ط±ظ‚ظ…ظٹط©',url:'/search/label/ط§ظ„ط¹ظ…ظ„ط§طھ%20ط§ظ„ط±ظ‚ظ…ظٹط©'},
+      {label:'ط£ط®ط¨ط§ط± ط§ظ„ط£ط³ظˆط§ظ‚',url:'/search/label/ط£ط®ط¨ط§ط±%20ط§ظ„ط£ط³ظˆط§ظ‚'}
+    ],
+    footerAbout:'',
+    footerLinks:[
+      {label:'ط§ظ„طµظپط­ط© ط§ظ„ط±ط¦ظٹط³ظٹط©',url:'data:blog.homepageUrl'},
+      {label:'ط®ط±ظٹط·ط© ط§ظ„ظ…ظˆظ‚ط¹',url:'/sitemap.xml'},
+      {label:'طھط؛ط°ظٹط© RSS',url:'/feeds/posts/default'},
+      {label:'ط§ظ„ظˆط³ط·ط§ط، ط§ظ„ظ…ظˆط«ظˆظ‚ظˆظ†',url:'/search/label/ظˆط³ط·ط§ط،%20ظ…ظˆط«ظˆظ‚ظˆظ†'},
+      {label:'طھظˆطµظٹط§طھ ط§ظ„ظپظˆط±ظƒط³',url:'/search/label/طھظˆطµظٹط§طھ%20ظپظˆط±ظƒط³'}
+    ],
+    adsenseClient:'', adUnitCode:'', ticker:true, darkMode:true
+  };
+  var FX={};
+  function fxMerge(c){
+    var m={};for(var k in FX_DEFAULTS){m[k]=FX_DEFAULTS[k];}
+    c=c||{};
+    for(var k2 in c){
+      if((k2==='colors'||k2==='colorsLight')&&c[k2]){m[k2]={};for(var cc in FX_DEFAULTS[k2]){m[k2][cc]=FX_DEFAULTS[k2][cc];}for(var cc2 in c[k2]){m[k2][cc2]=c[k2][cc2];}}
+      else if(k2==='nav'&&c[k2]&&c[k2].length){m.nav=c[k2];}
+      else if(k2==='footerLinks'&&c[k2]&&c[k2].length){m.footerLinks=c[k2];}
+      else{m[k2]=c[k2];}
+    }
+    return m;
+  }
+  function fxTheme(){return localStorage.getItem('fxTheme')||(FX.darkMode===false?'light':'dark');}
+  function fxApplyTheme(){
+    var mode=fxTheme();
+    document.body.classList.toggle('fx-light',mode==='light');
+    var pal=(mode==='light')?FX.colorsLight:FX.colors;
+    var root=document.documentElement.style;
+    for(var k in pal){if(pal[k])root.setProperty('--'+k,pal[k]);}
+    var btn=document.getElementById('fx-theme-toggle');
+    if(btn){btn.setAttribute('aria-label',mode==='light'?'ط§ظ„ظˆط¶ط¹ ط§ظ„ظ„ظٹظ„ظٹ':'ط§ظ„ظˆط¶ط¹ ط§ظ„ظ†ظ‡ط§ط±ظٹ');btn.title=mode==='light'?'ط§ظ„ظˆط¶ط¹ ط§ظ„ظ„ظٹظ„ظٹ':'ط§ظ„ظˆط¶ط¹ ط§ظ„ظ†ظ‡ط§ط±ظٹ';}
+    try{if(window.TradingView){location.reload();}}catch(e){}
+  }
+  function fxApplyBrand(){
+    var logo=document.getElementById('fx-logo');
+    var manual=document.querySelector('.fx-logo-sect img');
+    var src=manual?manual.getAttribute('src'):FX.logo;
+    if(logo&&src){logo.innerHTML='<img alt="'+document.title+'" src="'+src+'"/>';}
+    if(FX.siteName){var b=document.querySelector('.brand-text b');if(b)b.textContent=FX.siteName;}
+    if(FX.tagline){var s=document.querySelector('.brand-text span');if(s)s.textContent=FX.tagline;}
+  }
+  function fxApplyNav(){
+    var nav=document.getElementById('fx-nav');
+    if(!nav)return;
+    var cur=decodeURIComponent(location.pathname);
+    var links=nav.querySelectorAll('a');
+    for(var i=0;i<links.length;i++){
+      var href=decodeURIComponent(links[i].getAttribute('href')||'');
+      var isHome=(href===location.origin+'/'||href==='/');
+      var act=isHome?(cur==='/'||cur===''):(cur.indexOf(href.replace(/^.*\/search\/label\//,''))!==-1);
+      if(act)links[i].classList.add('is-active');
+    }
+  }
+  function fxApplyFooter(){
+    if(FX.footerAbout){var a=document.getElementById('fx-footer-about');if(a)a.textContent=FX.footerAbout;}
+    var fl=document.getElementById('fx-footer-links');
+    if(fl&&!fl.querySelector('a')){
+      var html='';
+      for(var i=0;i<FX.footerLinks.length;i++){
+        var it=FX.footerLinks[i];
+        var url=(it.url==='data:blog.homepageUrl')?'/':it.url;
+        html+='<a href="'+url+'">'+it.label+'</a>';
+      }
+      fl.innerHTML=html;
+    }
+  }
+  function fxAdsense(){
+    if(document.querySelector('script[src*="adsbygoogle.js"]'))return;
+    if(FX.adsenseClient){
+      var s=document.createElement('script');
+      s.async=true;s.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='+FX.adsenseClient;
+      s.crossOrigin='anonymous';
+      document.head.appendChild(s);
+    }
+  }
+  function fxInlineAd(){
+    if(!FX.adUnitCode)return;
+    var div=document.createElement('div');
+    div.className='fx-in-ad';
+    div.innerHTML=FX.adUnitCode;
+    var content=document.querySelector('.post-content');
+    if(content){var p=content.querySelector('p');if(p)p.after(div);else content.appendChild(div);}
+    else{document.body.appendChild(div);}
+    try{window.adsbygoogle=window.adsbygoogle||[];window.adsbygoogle.push({});}catch(e){}
+  }
+  function fxHideEmpty(){
+    var zones=document.querySelectorAll('.fx-ad');
+    for(var i=0;i<zones.length;i++){if(!zones[i].querySelector('.widget'))zones[i].style.display='none';}
+    if(FX.ticker===false){var tk=document.querySelector('.ticker');if(tk)tk.style.display='none';}
+  }
+  function fxOgImage(){
+    var imgs=document.querySelectorAll('.post-content img');
+    if(!imgs.length)return;
+    var src=imgs[0].src;
+    if(!src)return;
+    ['og:image','twitter:image'].forEach(function(prop){
+      var m=document.querySelector('meta[property="'+prop+'"],meta[name="'+prop+'"]');
+      if(m)m.setAttribute('content',src);
+    });
+    var ld=document.getElementById('fx-jsonld');
+    if(ld){
+      try{
+        var j=JSON.parse(ld.textContent);
+        j.image=src;j.thumbnailUrl=src;
+        ld.textContent=JSON.stringify(j);
+      }catch(e){}
+    }
+  }
+  function fxPlaceholders(){
+    document.querySelectorAll('.hero-thumb, .card-thumb').forEach(function(a){
+      if(!a.querySelector('img')){
+        var t=a.getAttribute('data-title')||'ظپ';
+        var ph=document.createElement('div');
+        ph.className='thumb-ph';ph.textContent=t.charAt(0);
+        a.appendChild(ph);
+      }
+    });
+  }
+  function fxFeedImages(){
+    var thumbs=[].slice.call(document.querySelectorAll('.hero-thumb, .card-thumb'));
+    var missing=thumbs.filter(function(a){return !a.querySelector('img');});
+    if(!missing.length)return;
+    var need={};
+    missing.forEach(function(a){
+      var u=(a.getAttribute('href')||'').split('?')[0];
+      if(u)need[u]=a;
+    });
+    var urls=Object.keys(need);
+    if(!urls.length)return;
+    var key='fxImgIndex';
+    var ttl=4*60*1000;
+    var useCache=false;
+    try{
+      var cached=JSON.parse(sessionStorage.getItem(key));
+      if(cached&&cached.t&&cached.map&&(Date.now()-cached.t)<ttl){
+        // Only trust the cache if it actually covers one of the needed URLs
+        // (an empty/outdated map must never block fresh injection).
+        useCache=urls.some(function(u){return !!cached.map[u];});
+      }
+    }catch(e){}
+    if(useCache){fxInjectImages(need,cached.map);return;}
+    var parseFeed=function(feed){
+      var map={};
+      (feed.feed.entry||[]).forEach(function(en){
+        var alt=null;
+        for(var i=0;i<(en.link||[]).length;i++){if(en.link[i].rel==='alternate'){alt=en.link[i];break;}}
+        if(!alt)return;
+        var u=(alt.href||'').split('?')[0];
+        var m=(en.content&&en.content.$t||'').match(/<img[^>]+src=["']([^"']+)/i);
+        if(u&&m)map[u]=m[1].replace(/&amp;/g,'&');
+      });
+      try{sessionStorage.setItem(key,JSON.stringify({t:Date.now(),map:map}));}catch(e){}
+      fxInjectImages(need,map);
+    };
+    // Await the feed warmed in <head> (parallel to widgets.js) to avoid a
+    // second request; fall back to a direct fetch only if the guide is absent.
+    if(window.__feedP){window.__feedP.then(function(f){if(f)parseFeed(f);});return;}
+    var max=Math.min(24,urls.length+8);
+    fetch(location.origin+'/feeds/posts/default?alt=json&max-results='+max+'&fields=entry(title,link,content)')
+      .then(function(r){return r.json();})
+      .then(parseFeed)
+      .catch(function(){});
+  }
+  function fxInjectImages(need,map){
+    Object.keys(need).forEach(function(u){
+      var img=map[u];
+      if(!img)return;
+      var a=need[u];
+      var ph=a.querySelector('.thumb-ph');
+      var isHero=a.className.indexOf('hero-thumb')!==-1;
+      var w=isHero?680:560;
+      var im=document.createElement('img');
+      im.alt=a.getAttribute('data-title')||'';
+      im.loading=isHero?'eager':'lazy';
+      im.fetchPriority=isHero?'high':'auto';
+      im.width=w;
+      im.height=Math.round(w*9/16);
+      // Resized + WebP via images.weserv.nl so the hero/cards load small and
+      // fast (LCP). Fallback chain: optimizer â†’ original â†’ refetch feed once.
+      im.onerror=function(){
+        if(!im.dataset.fb){im.dataset.fb='1';im.src=img;return;}
+        if(im.dataset.retry)return;
+        im.dataset.retry='1';
+        im.remove();
+        try{sessionStorage.removeItem('fxImgIndex');}catch(e){}
+        setTimeout(fxFeedImages,300);
+      };
+      // Hero (LCP): source is factory-capped at <=1440 so serve it DIRECT (the
+      // source host is preconnected). weserv rescued only card thumbs, where a
+      // slow/blocked fetch doesn't touch LCP.
+      im.src=isHero?img:fxOpt(img,w);
+      if(ph)ph.remove();
+      a.insertBefore(im,a.firstChild);
+      // Live widgets wait for the LCP hero image, so release them only once it
+      // has actually painted (protects LCP from the ~160KB widget load).
+      if(isHero){im.onload=function(){window.__fxLiveGo&&window.__fxLiveGo();};}
+    });
+  }
+  function fxOpt(u,w){
+    if(!u)return u;
+    try{
+      return 'https://images.weserv.nl/?url='+encodeURIComponent(u)+'&w='+w+'&output=webp&q=68';
+    }catch(e){return u;}
+  }
+  function showDate(){
+    var d=new Date();var days=['ط§ظ„ط£ط­ط¯','ط§ظ„ط§ط«ظ†ظٹظ†','ط§ظ„ط«ظ„ط§ط«ط§ط،','ط§ظ„ط£ط±ط¨ط¹ط§ط،','ط§ظ„ط®ظ…ظٹط³','ط§ظ„ط¬ظ…ط¹ط©','ط§ظ„ط³ط¨طھ'];
+    var m=['ظٹظ†ط§ظٹط±','ظپط¨ط±ط§ظٹط±','ظ…ط§ط±ط³','ط£ط¨ط±ظٹظ„','ظ…ط§ظٹظˆ','ظٹظˆظ†ظٹظˆ','ظٹظˆظ„ظٹظˆ','ط£ط؛ط³ط·ط³','ط³ط¨طھظ…ط¨ط±','ط£ظƒطھظˆط¨ط±','ظ†ظˆظپظ…ط¨ط±','ط¯ظٹط³ظ…ط¨ط±'];
+    var e=document.getElementById('fx-clock');
+    if(e){e.textContent=days[d.getDay()]+' '+d.getDate()+' '+m[d.getMonth()]+' '+d.getFullYear()+' â€” '+d.toLocaleTimeString('en-GB');}
+  }
+  function fxMeta(){
+    var set=function(sel,val){var m=document.querySelector(sel);if(m)m.setAttribute('content',val);};
+    var og=document.querySelector('meta[property="og:description"]');
+    var fill=function(){if(og&&og.getAttribute('content')){set('meta[name="description"]',og.getAttribute('content'));set('meta[name="twitter:description"]',og.getAttribute('content'));}};
+    if(og&&og.getAttribute('content')){fill();}
+    else{var bt=document.querySelector('h1');if(bt&&bt.textContent){og=document.createElement('meta');og.setAttribute('property','og:description');og.setAttribute('content','Forex Check â€” '+bt.textContent.replace(/\s+/g,' ').slice(0,150));document.head.appendChild(og);fill();}}
+  }
+  function initFx(){
+    FX=fxMerge(window.FX_CONFIG);
+    fxApplyTheme();fxApplyBrand();fxApplyNav();fxApplyFooter();fxAdsense();fxInlineAd();fxHideEmpty();fxPlaceholders();
+    fxOgImage();
+    fxMeta();
+    fxFeedImages();
+    showDate();setInterval(showDate,30000);
+    var bt=document.getElementById('backtop');
+    if(bt){window.addEventListener('scroll',function(){bt.classList.toggle('show',window.scrollY>500);});
+      bt.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});}
+    var tg=document.getElementById('fx-theme-toggle');
+    if(tg){tg.addEventListener('click',function(){
+        var next=(fxTheme()==='light')?'dark':'light';
+        localStorage.setItem('fxTheme',next);
+        fxApplyTheme();
+      });}
+  }
+  window.addEventListener('DOMContentLoaded',initFx);
+  //]]>
+  </script>
+</head>
+
+<body expr:class='"fx-" + data:view.layout.class'>
+  <a class='skip-link' href='#main'>طھط®ط·ظٹ ط¥ظ„ظ‰ ط§ظ„ظ…ط­طھظˆظ‰</a>
+
+  <!-- ===== Ticker (deferred until after page load so it never blocks LCP) ===== -->
+  <div class='ticker'>
+    <div class='tradingview-widget-container'>
+      <div class='tradingview-widget-container__widget'></div>
+    </div>
+    <script type='text/javascript'>
+    (function(){
+      var cfg={"symbols":[{"proName":"FX_IDC:EURUSD","title":"EUR/USD"},{"proName":"FX_IDC:GBPUSD","title":"GBP/USD"},{"proName":"FX_IDC:USDJPY","title":"USD/JPY"},{"proName":"FX_IDC:XAUUSD","title":"Gold"},{"proName":"FX_IDC:USOIL","title":"WTI Oil"},{"proName":"BITSTAMP:BTCUSD","title":"BTC/USD"},{"proName":"NASDAQ:US100","title":"US 100"}],"showSymbolLogo":true,"colorTheme":"dark","isTransparent":true,"displayMode":"adaptive","locale":"ar"};
+      function fxTV(){
+        var box=document.querySelector('.ticker .tradingview-widget-container');
+        if(!box)return;
+        var s=document.createElement('script');
+        s.type='text/javascript';s.async=true;
+        s.src='https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js';
+        s.text=JSON.stringify(cfg);
+        box.appendChild(s);
+      }
+      var _g=false,go=function(){if(_g)return;_g=true;fxTV();};
+      // Wait for the LCP hero image, then load (so it never competes for
+      // bandwidth during LCP); hard failsafe at 9.5s guarantees it still runs.
+      var lst=window.__fxLive?window.__fxLive:null;
+      if(lst){try{lst.then(function(){go();});}catch(e){go();}}else{go();}
+      setTimeout(go,9500);
+    })();
+    </script>
+  </div>
+
+  <!-- ===== Header ===== -->
+  <header class='site-header'>
+    <div class='wrap header-in'>
+      <a class='brand' expr:href='data:blog.homepageUrl'>
+        <span class='brand-logo' id='fx-logo'>FC</span>
+        <span class='brand-text'>
+          <b>Forex<span class='w-check'>Check</span></b>
+          <span><data:blog.description/></span>
+        </span>
+      </a>
+      <div class='header-right'>
+        <span class='clock' id='fx-clock'></span>
+        <button aria-label='ط§ظ„ظˆط¶ط¹ ط§ظ„ظ†ظ‡ط§ط±ظٹ' class='theme-toggle' id='fx-theme-toggle' title='ط§ظ„ظˆط¶ط¹ ط§ظ„ظ†ظ‡ط§ط±ظٹ' type='button'>
+          <span class='icon-sun'>âک€ï¸ڈ</span>
+          <span class='icon-moon'>ًںŒ™</span>
+        </button>
+        <form action='/search' class='search-form' method='get' role='search'>
+          <input aria-label='ط¨ط­ط«' name='q' placeholder='ط§ط¨ط­ط«â€¦' type='text'/>
+          <button aria-label='ط¨ط­ط«' type='submit'>ط¨ط­ط«</button>
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Nav ===== -->
+  <nav class='nav' id='site-nav'>
+    <div class='wrap nav-in' id='fx-nav'>
+      <a href='/search/label/%D8%AA%D9%88%D8%B5%D9%8A%D8%A7%D8%AA%20%D9%81%D9%88%D8%B1%D9%83%D8%B3'>طھظˆطµظٹط§طھ ظپظˆط±ظƒط³</a>
+      <a href='/search/label/%D9%88%D8%B3%D8%B7%D8%A7%D8%A1%20%D9%85%D9%88%D8%AB%D9%88%D9%82%D9%88%D9%86'>ظˆط³ط·ط§ط، ظ…ظˆط«ظˆظ‚ظˆظ†</a>
+      <a href='/search/label/%D8%A3%D8%B3%D8%B9%D8%A7%D8%B1%20%D8%A7%D9%84%D8%B9%D9%85%D9%84%D8%A7%D8%AA'>ط£ط³ط¹ط§ط± ط§ظ„ط¹ظ…ظ„ط§طھ</a>
+      <a href='/search/label/%D8%A7%D9%84%D8%B0%D9%87%D8%A8%20%D9%88%D8%A7%D9%84%D9%86%D9%81%D8%B7'>ط§ظ„ط°ظ‡ط¨ ظˆط§ظ„ظ†ظپط·</a>
+      <a href='/search/label/%D8%AA%D8%AD%D9%84%D9%8A%D9%84%20%D9%81%D9%86%D9%8A'>طھط­ظ„ظٹظ„ ظپظ†ظٹ</a>
+      <a href='/search/label/%D8%A7%D9%84%D8%B9%D9%85%D9%84%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B1%D9%82%D9%85%D9%8A%D8%A9'>ط§ظ„ط¹ظ…ظ„ط§طھ ط§ظ„ط±ظ‚ظ…ظٹط©</a>
+      <a href='/search/label/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1%20%D8%A7%D9%84%D8%A3%D8%B3%D9%88%D8%A7%D9%82'>ط£ط®ط¨ط§ط± ط§ظ„ط£ط³ظˆط§ظ‚</a>
+    </div>
+  </nav>
+
+  <!-- ===== ط¥ط¹ظ„ط§ظ† ط£ط¹ظ„ظ‰ ط§ظ„طµظپط­ط© ===== -->
+  <div class='wrap fx-ad'>
+    <b:section class='fx-ad-inner' id='fx-ads-top' maxwidgets='1' name='ط¥ط¹ظ„ط§ظ† ط£ط¹ظ„ظ‰ ط§ظ„طµظپط­ط©' showaddelement='yes'></b:section>
+  </div>
+
+  <div class='wrap layout flex'>
+    <main id='main'>
+      <b:section class='main' id='main-sect' name='ط§ظ„ظ…ط­طھظˆظ‰ ط§ظ„ط±ط¦ظٹط³ظٹ' showaddelement='yes'>
+        <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2'>
+          <b:includable id='main'>
+            <b:if cond='data:view.isHomepage'>
+              <b:include name='homepage'/>
+            <b:else/>
+              <b:if cond='data:view.isSingleItem'>
+                <b:loop values='data:posts' var='post'>
+                  <b:include data='post' name='post'/>
+                </b:loop>
+              <b:else/>
+                <div class='grid-2'>
+                  <b:loop values='data:posts' var='post'>
+                    <b:include data='post' name='post'/>
+                  </b:loop>
+                </div>
+              </b:if>
+            </b:if>
+            <b:include name='pagination'/>
+          </b:includable>
+
+          <b:includable id='homepage'>
+            <b:loop index='i' values='data:posts' var='post'>
+              <b:if cond='data:i == 0'>
+                <article class='hero-card'>
+                  <a class='hero-thumb' expr:data-title='data:post.title' expr:href='data:post.url'>
+                    <b:include data='post' name='thumb'/>
+                  </a>
+                  <div class='hero-body'>
+                    <b:if cond='data:post.labels'>
+                      <span class='card-cat'><data:post.labels.first.name/></span>
+                    </b:if>
+                    <h1 class='hero-title'><a expr:href='data:post.url'><data:post.title/></a></h1>
+                    <p class='hero-snippet'><data:post.snippets.short/></p>
+                    <div class='card-meta'><data:post.date/> آ· <data:post.author.name/></div>
+                  </div>
+                </article>
+                <div class='grid-2'>
+                  <b:loop index='j' values='data:posts' var='post2'>
+                    <b:if cond='data:j > 0'>
+                      <b:include data='post2' name='card'/>
+                    </b:if>
+                  </b:loop>
+                </div>
+              </b:if>
+            </b:loop>
+          </b:includable>
+
+          <!-- Post thumbnail: featuredImage first, else first body image, else JS placeholder -->
+          <b:includable id='thumb' var='post'>
+            <b:if cond='data:post.featuredImage.isImage'>
+              <img expr:alt='data:post.title' expr:src='resizeImage(data:post.featuredImage.image, 1200, "16:7")' loading='eager' fetchpriority='high'/>
+            <b:else/>
+              <b:loop index='k' values='data:post.images' var='img'>
+                <b:if cond='data:k == 0'>
+                  <img expr:alt='data:post.title' expr:src='img.image' loading='eager' fetchpriority='high'/>
+                </b:if>
+              </b:loop>
+            </b:if>
+          </b:includable>
+
+          <b:includable id='card' var='post'>
+            <article class='card'>
+              <a class='card-thumb' expr:data-title='data:post.title' expr:href='data:post.url'>
+                <b:if cond='data:post.featuredImage.isImage'>
+                  <img expr:alt='data:post.title' expr:src='resizeImage(data:post.featuredImage.image, 600, "16:9")' loading='lazy'/>
+                <b:else/>
+                  <b:loop index='k' values='data:post.images' var='img'>
+                    <b:if cond='data:k == 0'>
+                      <img expr:alt='data:post.title' expr:src='img.image' loading='lazy'/>
+                    </b:if>
+                  </b:loop>
+                </b:if>
+                <b:if cond='data:post.labels'>
+                  <span class='card-cat'><data:post.labels.first.name/></span>
+                </b:if>
+              </a>
+              <div class='card-body'>
+                <h2 class='card-title'><a expr:href='data:post.url'><data:post.title/></a></h2>
+                <b:if cond='data:post.snippets.short'>
+                  <p class='card-snippet'><data:post.snippets.short/></p>
+                </b:if>
+                <div class='card-meta'><data:post.date/> آ· <data:post.author.name/></div>
+              </div>
+            </article>
+          </b:includable>
+
+          <b:includable id='post' var='post'>
+            <b:if cond='data:view.isSingleItem'>
+              <b:include data='post' name='single'/>
+            <b:else/>
+              <b:include data='post' name='card'/>
+            </b:if>
+          </b:includable>
+
+          <b:includable id='single' var='post'>
+            <b:if cond='data:view.isSingleItem'>
+              <script id='fx-jsonld' type='application/ld+json'>
+              {
+                "@context": "https://schema.org",
+                "@type": "NewsArticle",
+                "headline": "<data:post.title/>",
+                "image": "<data:post.featuredImage.image/>",
+                "thumbnailUrl": "<data:post.featuredImage.image/>",
+                "datePublished": "<data:post.date.iso8601/>",
+                "dateModified": "<data:post.lastUpdated.iso8601/>",
+                "mainEntityOfPage": { "@type": "WebPage", "@id": "<data:post.url.canonical/>" },
+                "publisher": { "@type": "Organization", "name": "<data:blog.title/>" },
+                "author": { "@type": "Person", "name": "mohammad kreich", "url": "https://www.facebook.com/share/196o6BGPcd/" }
+              }
+              </script>
+            </b:if>
+
+            <article class='post post-heading'>
+              <nav class='breadcrumb'>
+                <a expr:href='data:blog.homepageUrl'>ط§ظ„ط±ط¦ظٹط³ظٹط©</a>
+                <b:if cond='data:post.labels'>
+                  <b:loop values='data:post.labels' var='label'>
+                    â€؛ <a expr:href='data:label.url' rel='tag'><data:label.name/></a>
+                  </b:loop>
+                </b:if>
+              </nav>
+              <h1 class='post-title'><data:post.title/></h1>
+              <div class='post-meta'>
+                <span><data:post.date/></span>
+                <span class='author'><a href='https://www.facebook.com/share/196o6BGPcd/' rel='nofollow noopener' target='_blank'>mohammad kreich</a></span>
+                <b:loop values='data:post.labels' var='label'>
+                  <a class='pill' expr:href='data:label.url'><data:label.name/></a>
+                </b:loop>
+              </div>
+              <div class='post-content'>
+                <data:post.body/>
+              </div>
+              <div class='share'>
+                <span>ط´ط§ط±ظƒ:</span>
+                <a expr:href='"https://www.facebook.com/sharer/sharer.php?u=" + data:post.url.canonical' rel='noopener' target='_blank'>ظپظٹط³ط¨ظˆظƒ</a>
+                <a expr:href='"https://twitter.com/intent/tweet?url=" + data:post.url.canonical + "&amp;text=" + data:post.title' rel='noopener' target='_blank'>طھظˆظٹطھط±</a>
+                <a expr:href='"https://wa.me/?text=" + data:post.title + " " + data:post.url.canonical' rel='noopener' target='_blank'>ظˆط§طھط³ط§ط¨</a>
+                <a expr:href='"https://t.me/share/url?url=" + data:post.url.canonical + "&amp;text=" + data:post.title' rel='noopener' target='_blank'>طھظٹظ„ظٹط¬ط±ط§ظ…</a>
+              </div>
+              <b:include data='post' name='comments'/>
+            </article>
+          </b:includable>
+
+          <b:includable id='comments' var='post'>
+            <b:if cond='data:post.allowComments'>
+              <section class='comments' id='comments'>
+                <h3 class='widget-title'>ط§ظ„طھط¹ظ„ظٹظ‚ط§طھ</h3>
+                <b:if cond='data:post.comments'>
+                  <b:loop values='data:post.comments' var='comment'>
+                    <div class='comment'>
+                      <span class='comment-author'><data:comment.author/></span>
+                      <span class='comment-date'><data:comment.timestamp/></span>
+                      <div class='comment-body'><data:comment.body/></div>
+                    </div>
+                  </b:loop>
+                </b:if>
+                <div class='comment-form' style='margin-top:14px;'>
+                  <a expr:href='data:post.commentFormIframeSrc' id='comment-editor-src'>ط£ط¶ظپ طھط¹ظ„ظٹظ‚ط§ظ‹</a>
+                </div>
+              </section>
+            </b:if>
+          </b:includable>
+
+          <b:includable id='pagination'>
+            <b:if cond='data:olderPageUrl or data:newerPageUrl'>
+              <div class='pager'>
+                <b:if cond='data:newerPageUrl'>
+                  <a class='blog-pager-newer-link' expr:href='data:newerPageUrl'>â€¹ ط£ط­ط¯ط«</a>
+                <b:else/>
+                  <span></span>
+                </b:if>
+                <b:if cond='data:olderPageUrl'>
+                  <a class='blog-pager-older-link' expr:href='data:olderPageUrl'>ط§ظ„ط£ظ‚ط¯ظ… â€؛</a>
+                </b:if>
+              </div>
+            </b:if>
+          </b:includable>
+        </b:widget>
+      </b:section>
+    </main>
+
+    <aside id='sidebar'>
+      <b:section class='sidebar' id='sidebar-sect' name='ط§ظ„ط´ط±ظٹط· ط§ظ„ط¬ط§ظ†ط¨ظٹ' showaddelement='yes'>
+
+        <b:widget id='HTML1' locked='false' title='ط£ط³ظˆط§ظ‚ ط§ظ„ظٹظˆظ…' type='HTML' version='2'>
+          <b:widget-settings>
+            <b:widget-setting name='content'><![CDATA[<div class="tradingview-widget-container" style="height:520px;overflow:hidden;"><div class="tradingview-widget-container__widget"></div></div><script type="text/javascript">
+(function(){
+  var cfg={"colorTheme":"dark","dateRange":"1D","showChart":false,"locale":"ar","largeChartUrl":"","isTransparent":true,"showSymbolLogo":true,"showFloatingTooltip":true,"width":"100%","height":"520","tabs":[{"title":"ظپظˆط±ظƒط³","symbols":[{"s":"FX:EURUSD","d":"EUR/USD"},{"s":"FX:GBPUSD","d":"GBP/USD"},{"s":"FX:USDJPY","d":"USD/JPY"},{"s":"FX:USDCHF","d":"USD/CHF"},{"s":"FX:AUDUSD","d":"AUD/USD"}],"originalTitle":"ظپظˆط±ظƒط³"},{"title":"ظ…ط¹ط§ط¯ظ† ظˆط·ط§ظ‚ط©","symbols":[{"s":"OANDA:XAUUSD","d":"ط°ظ‡ط¨"},{"s":"OANDA:XAGUSD","d":"ظپط¶ط©"},{"s":"TVC:USOIL","d":"ط®ط§ظ… ط£ظ…ط±ظٹظƒظٹ"},{"s":"TVC:UKOIL","d":"ط¨ط±ظ†طھ"}],"originalTitle":"ط³ظ„ط¹"},{"title":"ط¹ظ…ظ„ط§طھ ط±ظ‚ظ…ظٹط©","symbols":[{"s":"BITSTAMP:BTCUSD","d":"ط¨ظٹطھظƒظˆظٹظ†"},{"s":"BITSTAMP:ETHUSD","d":"ط¥ظٹط«ط±ظٹظˆظ…"},{"s":"BITSTAMP:XRPUSD","d":"ط±ظٹط¨ظ„"}],"originalTitle":"ظƒط±ظٹط¨طھظˆ"}]};
+  function fxMO(){
+    var box=document.querySelector('.sidebar .tradingview-widget-container')||document.querySelector('.tradingview-widget-container');
+    if(!box)return;
+    var s=document.createElement('script');
+    s.type='text/javascript';s.async=true;
+    s.src='https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js';
+    s.text=JSON.stringify(cfg);
+    var load=function(){box.appendChild(s);};
+    if('IntersectionObserver' in window&&box){
+      var io=new IntersectionObserver(function(en){
+        en.forEach(function(e){if(e.isIntersecting){io.disconnect();load();}});
+      },{rootMargin:'200px'});
+      io.observe(box);
+      setTimeout(function(){try{io.disconnect();load();}catch(e){}},8000);
+    }else{load();}
+  }
+  var _g=false,go=function(){if(_g)return;_g=true;fxMO();};
+  var lst=window.__fxLive?window.__fxLive:null;
+  if(lst){try{lst.then(function(){go();});}catch(e){go();}}else{go();}
+  setTimeout(go,9500);
+})();
+</script>]]></b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+            <div class='side-widget'>
+              <b:if cond='data:title'><h3 class='widget-title'><data:title/></h3></b:if>
+              <div class='widget-content'><data:content/></div>
+            </div>
+          </b:includable>
+        </b:widget>
+
+        <b:widget id='PopularPosts1' locked='false' title='ط§ظ„ط£ظƒط«ط± ظ‚ط±ط§ط،ط©' type='PopularPosts' version='2'>
+          <b:widget-settings>
+            <b:widget-setting name='numItemsToShow'>5</b:widget-setting>
+            <b:widget-setting name='showThumbnails'>false</b:widget-setting>
+            <b:widget-setting name='showSnippets'>false</b:widget-setting>
+            <b:widget-setting name='timeRange'>ALL_TIME</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+            <div class='side-widget'>
+              <b:if cond='data:title'><h3 class='widget-title'><data:title/></h3></b:if>
+              <div class='widget-content'>
+                <b:loop index='i' values='data:posts' var='post'>
+                  <div class='pp-item'>
+                    <span class='pp-num' expr:data-num='data:i + 1'><expr:expr expr:value='data:i + 1'/></span>
+                    <a expr:href='data:post.href'><data:post.title/></a>
+                  </div>
+                </b:loop>
+              </div>
+            </div>
+          </b:includable>
+        </b:widget>
+
+        <b:widget id='Label1' locked='false' title='ط§ظ„ط£ظ‚ط³ط§ظ…' type='Label' version='2'>
+          <b:widget-settings>
+            <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
+            <b:widget-setting name='display'>LIST</b:widget-setting>
+            <b:widget-setting name='selectedLabelsList'/>
+            <b:widget-setting name='showType'>ALL</b:widget-setting>
+            <b:widget-setting name='showFreqNumbers'>false</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+            <div class='side-widget'>
+              <b:if cond='data:title'><h3 class='widget-title'><data:title/></h3></b:if>
+              <div class='widget-content'>
+                <ul>
+                  <b:loop values='data:labels' var='label'>
+                    <li><a expr:href='data:label.url'><data:label.name/></a></li>
+                  </b:loop>
+                </ul>
+              </div>
+            </div>
+          </b:includable>
+        </b:widget>
+
+      </b:section>
+    </aside>
+  </div>
+
+  <!-- ===== ط¥ط¹ظ„ط§ظ† ظ‚ط¨ظ„ ط§ظ„طھط°ظٹظٹظ„ ===== -->
+  <div class='wrap fx-ad'>
+    <b:section class='fx-ad-inner' id='fx-ads-bottom' maxwidgets='1' name='ط¥ط¹ظ„ط§ظ† ظ‚ط¨ظ„ ط§ظ„طھط°ظٹظٹظ„' showaddelement='yes'></b:section>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer class='site-footer'>
+    <div class='wrap'>
+      <div class='footer-grid'>
+        <div class='footer-about'>
+          <h4><data:blog.title/></h4>
+          <p id='fx-footer-about'><data:blog.description/></p>
+          <div class='footer-social'>
+            <a class='fs-social' href='https://t.me/forexcheick' target='_blank' rel='noopener' aria-label='طھظٹظ„ظٹط¬ط±ط§ظ…' title='طھظٹظ„ظٹط¬ط±ط§ظ…'>
+              <svg viewBox='0 0 24 24'><path d='M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z'/></svg>
+            </a>
+            <a class='fs-social' href='https://x.com/forexalaraab' target='_blank' rel='noopener' aria-label='ط¥ظƒط³ (طھظˆظٹطھط±)' title='ط¥ظƒط³'>
+              <svg viewBox='0 0 24 24'><path d='M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z'/></svg>
+            </a>
+            <a class='fs-social' href='https://www.facebook.com/share/1BDU3dqG9G/' target='_blank' rel='noopener' aria-label='ظپظٹط³ط¨ظˆظƒ' title='ظپظٹط³ط¨ظˆظƒ'>
+              <svg viewBox='0 0 24 24'><path d='M24 12.073c0-6.627-5.373-12-12-12-6.627 0-12 5.373-12 12 0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z'/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4>ط§ظ„ط£ظ‚ط³ط§ظ…</h4>
+          <a expr:href='data:blog.homepageUrl'>ط§ظ„ط±ط¦ظٹط³ظٹط©</a>
+          <a href='/search/label/ط¯ظˆظ„ط§ط±'>ط³ط¹ط± ط§ظ„ط¯ظˆظ„ط§ط± ط§ظ„ظٹظˆظ…</a>
+          <a href='/search/label/ط°ظ‡ط¨'>ط³ط¹ط± ط§ظ„ط°ظ‡ط¨ ط§ظ„ظٹظˆظ…</a>
+          <a href='/search/label/طھظˆطµظٹط§طھ%20ظپظˆط±ظƒط³'>طھظˆطµظٹط§طھ ط§ظ„ظپظˆط±ظƒط³</a>
+          <a href='/search/label/ظˆط³ط·ط§ط،%20ظ…ظˆط«ظˆظ‚ظˆظ†'>ظˆط³ط·ط§ط، ظ…ظˆط«ظˆظ‚ظˆظ†</a>
+          <a href='/search/label/طھط­ظ„ظٹظ„%20ظپظ†ظٹ'>طھط­ظ„ظٹظ„ ظپظ†ظٹ</a>
+          <a href='/search/label/ظ†ظپط·'>ط§ظ„ظ†ظپط·</a>
+        </div>
+        <div>
+          <h4>ط§ظ„طµظپط­ط§طھ</h4>
+          <b:section class='footer-pages' id='footer-pages' maxwidgets='1' showaddelement='yes'>
+            <b:widget id='PageList1' locked='false' title='' type='PageList' version='2'>
+              <b:includable id='main'>
+                <b:loop values='data:links' var='link'>
+                  <a expr:href='data:link.href'><data:link.title/></a>
+                </b:loop>
+              </b:includable>
+            </b:widget>
+          </b:section>
+        </div>
+        <div>
+          <h4>ط±ظˆط§ط¨ط· ط³ط±ظٹط¹ط©</h4>
+          <div class='fx-footer-links' id='fx-footer-links'>
+            <a expr:href='data:blog.homepageUrl'>ط§ظ„طµظپط­ط© ط§ظ„ط±ط¦ظٹط³ظٹط©</a>
+            <a href='/sitemap.xml'>ط®ط±ظٹط·ط© ط§ظ„ظ…ظˆظ‚ط¹</a>
+            <a href='/feeds/posts/default' rel='noopener' target='_blank'>طھط؛ط°ظٹط© RSS</a>
+            <a href='/search/label/ظˆط³ط·ط§ط،%20ظ…ظˆط«ظˆظ‚ظˆظ†'>ط§ظ„ظˆط³ط·ط§ط، ط§ظ„ظ…ظˆط«ظˆظ‚ظˆظ†</a>
+            <a href='/search/label/طھظˆطµظٹط§طھ%20ظپظˆط±ظƒط³'>طھظˆطµظٹط§طھ ط§ظ„ظپظˆط±ظƒط³</a>
+          </div>
+        </div>
+      </div>
+      <div class='copyright'>
+        آ© <data:blog.title/> <data:blog.date/> â€” ط¬ظ…ظٹط¹ ط§ظ„ط­ظ‚ظˆظ‚ ظ…ط­ظپظˆط¸ط© آ· ط£ط®ط¨ط§ط± ظˆطھط­ظ„ظٹظ„ط§طھ ظ„ظ„ط£ط³ظˆط§ظ‚ ط§ظ„ظ…ط§ظ„ظٹط©طŒ ظˆظ„ظٹط³طھ ظ†طµظٹط­ط© ط§ط³طھط«ظ…ط§ط±ظٹط©.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== ط£ط¯ط§ط© ط§ظ„ظ„ظˆط؛ظˆ (ظ…ظ† ط§ظ„طھظ†ط³ظٹظ‚): ط¶ط¹ <img src='ط±ط§ط¨ط· ط§ظ„ظ„ظˆط؛ظˆ'/> ظ‡ظ†ط§ ===== -->
+  <b:section class='fx-logo-sect' id='fx-logo-sect' maxwidgets='1' name='ط§ظ„ظ„ظˆط؛ظˆ â€” ط¶ط¹ &lt;img src="ط±ط§ط¨ط· ط§ظ„ظ„ظˆط؛ظˆ"/&gt; ظ‡ظ†ط§' showaddelement='yes'>
+    <b:widget id='HTML3' locked='false' title='ط§ظ„ظ„ظˆط؛ظˆ' type='HTML' version='2'>
+      <b:includable id='main'>
+        <data:content/>
+      </b:includable>
+    </b:widget>
+  </b:section>
+
+  <!-- ===== ظƒظˆط¯ ط£ط¯ط³ظ†ط³ ط§ظ„طھظ„ظ‚ط§ط¦ظٹ (ظ…ظ† ط§ظ„طھظ†ط³ظٹظ‚): ط§ظ„طµظ‚ ظƒظˆط¯ ط§ظ„ط¥ط¹ظ„ط§ظ†ط§طھ ظ‡ظ†ط§ ===== -->
+  <b:section class='fx-adsense-sect' id='fx-adsense-sect' maxwidgets='1' name='ظƒظˆط¯ ط£ط¯ط³ظ†ط³ ط§ظ„طھظ„ظ‚ط§ط¦ظٹ â€” ط§ظ„طµظ‚ ط§ظ„ظƒظˆط¯ ظ‡ظ†ط§' showaddelement='yes'>
+    <b:widget id='HTML4' locked='false' title='ط£ط¯ط³ظ†ط³' type='HTML' version='2'>
+      <b:includable id='main'>
+        <data:content/>
+      </b:includable>
+    </b:widget>
+  </b:section>
+
+  <!-- ===== ط¥ط¹ط¯ط§ط¯ط§طھ ط§ظ„ظ‚ط§ظ„ط¨ (ظ…ظ† ط§ظ„طھظ†ط³ظٹظ‚) ===== -->
+  <b:section class='fx-config' id='fx-config-sect' maxwidgets='1' name='ط¥ط¹ط¯ط§ط¯ط§طھ ط§ظ„ظ‚ط§ظ„ط¨ (ط§ط­طھط±ط§ظپظٹ)' showaddelement='yes'>
+    <b:widget id='HTML2' locked='false' title='ط¥ط¹ط¯ط§ط¯ط§طھ ط§ظ„ظ‚ط§ظ„ط¨' type='HTML' version='2'>
+      <b:includable id='main'>
+        <div class='fx-config-box' id='fx-config-widget'>
+          <div class='fx-config-hint'>ط¹ط¯ظ‘ظ„ ط§ظ„ظ‚ظٹظ… ط«ظ… ط§ط­ظپط¸ ط§ظ„طھط®ط·ظٹط·.</div>
+          <script>
+          //<![CDATA[
+          window.FX_CONFIG = {
+            colors: { bg:'#131722', panel:'#1e222d', panel2:'#262b38', border:'#2a2e39', ink:'#d1d4dc', muted:'#9aa0ae', head:'#ffffff', brand:'#0a8f68', brand2:'#00c690', up:'#089981', down:'#f6465d', navbg:'#0e1119', headbg:'#0e1119' },
+            colorsLight: { bg:'#f4f6fb', panel:'#ffffff', panel2:'#eef1f7', border:'#e3e8f0', ink:'#1e2430', muted:'#5c6470', head:'#0f1626', brand:'#0a8f68', brand2:'#009e76', up:'#089981', down:'#e0314a', navbg:'#ffffff', headbg:'#ffffff' },
+            logo: '',
+            siteName: '',
+            tagline: '',
+            nav: [
+              {label:'ط§ظ„ط±ط¦ظٹط³ظٹط©',url:'data:blog.homepageUrl'},
+              {label:'ط³ط¹ط± ط§ظ„ط¯ظˆظ„ط§ط± ط§ظ„ظٹظˆظ…',url:'/search/label/ط¯ظˆظ„ط§ط±'},
+              {label:'ط§ظ„ظٹظˆط±ظˆ',url:'/search/label/ظٹظˆط±ظˆ'},
+              {label:'ط§ظ„ط¬ظ†ظٹظ‡ ط§ظ„ط¥ط³طھط±ظ„ظٹظ†ظٹ',url:'/search/label/ط¬ظ†ظٹظ‡%20ط¥ط³طھط±ظ„ظٹظ†ظٹ'},
+              {label:'ط§ظ„ظٹظ† ط§ظ„ظٹط§ط¨ط§ظ†ظٹ',url:'/search/label/ظٹظ†%20ظٹط§ط¨ط§ظ†ظٹ'},
+              {label:'ط³ط¹ط± ط§ظ„ط°ظ‡ط¨ ط§ظ„ظٹظˆظ…',url:'/search/label/ط°ظ‡ط¨'},
+              {label:'ط§ظ„ظ†ظپط·',url:'/search/label/ظ†ظپط·'},
+              {label:'طھظˆطµظٹط§طھ ط§ظ„ظپظˆط±ظƒط³',url:'/search/label/طھظˆطµظٹط§طھ%20ظپظˆط±ظƒط³'},
+              {label:'ظˆط³ط·ط§ط، ظ…ظˆط«ظˆظ‚ظˆظ†',url:'/search/label/ظˆط³ط·ط§ط،%20ظ…ظˆط«ظˆظ‚ظˆظ†'},
+              {label:'طھط­ظ„ظٹظ„ ظپظ†ظٹ',url:'/search/label/طھط­ظ„ظٹظ„%20ظپظ†ظٹ'},
+              {label:'ط§ظ„ط¹ظ…ظ„ط§طھ ط§ظ„ط±ظ‚ظ…ظٹط©',url:'/search/label/ط¹ظ…ظ„ط§طھ%20ط±ظ‚ظ…ظٹط©'},
+              {label:'ط§ظ„ط£ط³ظˆط§ظ‚ ط§ظ„ط¹ط§ظ„ظ…ظٹط©',url:'/search/label/ط£ط³ظˆط§ظ‚%20ط¹ط§ظ„ظ…ظٹط©'},
+              {label:'ط§ظ„ط¨ظٹط§ظ†ط§طھ ط§ظ„ط§ظ‚طھطµط§ط¯ظٹط©',url:'/search/label/ط¨ظٹط§ظ†ط§طھ%20ط§ظ‚طھطµط§ط¯ظٹط©'}
+            ],
+            footerAbout: '',
+            footerLinks: [
+              {label:'ط§ظ„طµظپط­ط© ط§ظ„ط±ط¦ظٹط³ظٹط©',url:'data:blog.homepageUrl'},
+              {label:'ط®ط±ظٹط·ط© ط§ظ„ظ…ظˆظ‚ط¹',url:'/sitemap.xml'},
+              {label:'طھط؛ط°ظٹط© RSS',url:'/feeds/posts/default'},
+              {label:'ط§ظ„ظˆط³ط·ط§ط، ط§ظ„ظ…ظˆط«ظˆظ‚ظˆظ†',url:'/search/label/ظˆط³ط·ط§ط،%20ظ…ظˆط«ظˆظ‚ظˆظ†'},
+              {label:'طھظˆطµظٹط§طھ ط§ظ„ظپظˆط±ظƒط³',url:'/search/label/طھظˆطµظٹط§طھ%20ظپظˆط±ظƒط³'}
+            ],
+            adsenseClient: '',
+            adUnitCode: '',
+            ticker: true,
+            darkMode: true
+          };
+          //]]>
+          </script>
+        </div>
+      </b:includable>
+    </b:widget>
+  </b:section>
+
+  <button aria-label='ط§ظ„ط£ط¹ظ„ظ‰' class='backtop' id='backtop' type='button'>â†‘</button>
+</body>
+</html>
